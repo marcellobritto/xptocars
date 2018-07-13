@@ -1,0 +1,74 @@
+[
+  {
+    "categoria": {
+        "tipo": "Carro econômico com ar",
+        "descricao": "Chevrolet celta, ford fiesta, vw gol, fiat palio ou similar"
+    },
+    "img": "./assets/img/veiculos/gol.png",
+    "imgAgencia": "./assets/img/agencias/hertz.png",
+    "codigoTaxa": "IFMR",
+    "detalhes": [
+        "Quilometragem livre",
+        "Seguro total do veículo",
+        "Seguro a terceiros",
+        "Taxa de serviços inclusas"
+    ],
+    "maisDetalhes": {
+      "ativo": false,
+      "msg": "Super inclusive promocional - Km livre, seguro total do veículo (LDW), seguro a terceiros (SLI), taxas de serviços inclusas e 1 motorista adicional."
+    },
+    "locacao": {
+        "valor": 938.00,
+        "desconto": 0.2,
+        "taxaInclusa": true,
+        "qtParcelas": 10
+    },
+    "descricao": {
+        "qtdPortas": 4,
+        "qtdPessoas": 5,
+        "qtdMalas": 3,
+        "arCondicionado": true,
+        "transmissao": "Automático",
+        "direcaoHidraulica": true,
+        "vidroEletrico": true,
+        "cd": true,
+        "radio": true
+    }
+  },
+  {
+    "categoria": {
+        "tipo": "Carro econômico com ar",
+        "descricao": "Chevrolet celta, ford fiesta, vw gol, fiat palio ou similar"
+    },
+    "img": "./assets/img/veiculos/sandero.png",
+    "imgAgencia": "./assets/img/agencias/budget.png",
+    "codigoTaxa": "IFMR",
+    "detalhes": [
+        "Quilometragem livre",
+        "Seguro total do veículo",
+        "Seguro a terceiros",
+        "Taxa de serviços inclusas"
+    ],
+    "maisDetalhes": {
+      "ativo": false,
+      "msg": "Super inclusive promocional - Km livre, seguro total do veículo (LDW), seguro a terceiros (SLI), taxas de serviços inclusas e 1 motorista adicional."
+    },
+    "locacao": {
+        "valor": 938.00,
+        "desconto": 0,
+        "taxaInclusa": true,
+        "qtParcelas": 0
+    },
+    "descricao": {
+        "qtdPortas": 4,
+        "qtdPessoas": 5,
+        "qtdMalas": 3,
+        "arCondicionado": true,
+        "transmissao": "Automático",
+        "direcaoHidraulica": false,
+        "vidroEletrico": true,
+        "cd": false,
+        "radio": true
+    }
+  }
+]

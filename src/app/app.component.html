@@ -1,0 +1,164 @@
+<header id="navigation"></header>
+<main class="site-content">
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-12 col-xs-12">
+					<div class="box-filtersSearch">
+						<form class="form">
+							<fieldset>
+								<legend class="form__legend">Buscar de Veiculo</legend>
+								<div class="form_group">
+									<label for="localGo">Local de Retirada:</label>
+									<div class="box-txtG"><input name="localGo" type="text" placeholder="Digite aqui o local" required></div>
+								</div>
+								<div class="form_group">
+									<label class="blue">
+									<input type="checkbox"  name="check">Devolver o carro em outro local
+									</label>
+								</div>
+								<div class="form_group">
+									<label for="localReturn">Local de Devolução:</label>
+									<div class="box-txtG"><input name="localReturn" type="text" placeholder="Digite aqui o local" required></div>
+								</div>
+								<div class="form_group halfCell mr">
+									<label for="retiradaDate">Retirada:</label>
+									<div class="box-txtG">
+										<input class="date" name="date" type="text" placeholder="Data">
+										<select name="retiradaDate" class="hours">
+											<option value="10">10:00</option>
+											<option value="11">11:00</option>
+											<option value="12">12:00</option>
+											<option value="13">13:00</option>
+										</select>
+									</div>
+								</div>
+								<div class="form_group halfCell">
+									<label for="entregaHour">Entrega:</label>
+									<div class="box-txtG">
+										<input class="date" name="entregaHour" type="text" placeholder="Data">
+										<select name="entrega" class="hours">
+											<option value="10">10:00</option>
+											<option value="11">11:00</option>
+											<option value="12">12:00</option>
+											<option value="13">13:00</option>
+										</select>
+									</div>
+								</div>
+								<div class="form_group includeHV">
+									<p>Economize até <span>35%</span></p>
+									<div class="optionsEco">
+										<input type="checkbox"  name="check">Incluir Voo
+										<input type="checkbox"  name="check">Incluir Hotel
+									</div>
+								</div>
+								<div class="form_group submit">
+									<input type="submit" value="Buscar" class="btn btn-primary btSend" />
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-9 col-sm-12 col-xs-12">
+					<div class="box-Filters">
+						<div class="box-Border">
+							Ítens por página:
+							<select name="cars">
+								<option value="volvo">10</option>
+								<option value="saab">20</option>
+								<option value="fiat">30</option>
+								<option value="audi">40</option>
+							</select>
+						</div>
+						<div class="box-Border">
+							Ordenar por:
+							<select name="cars">
+								<option value="volvo">menor preço</option>
+								<option value="saab">maior preço</option>
+								<option value="fiat">loren ipsun</option>
+							</select>
+						</div>
+						<div class="box-Border">
+							Moeda:
+							<select name="cars">
+								<option value="volvo">Real</option>
+								<option value="saab">Dolar</option>
+								<option value="fiat">Euro</option>
+							</select>
+						</div>
+          </div>
+					<!-- Início Produto -->
+					<div class="container-Itens" *ngFor="let veiculo of veiculos">
+						<div class="productDetails">
+							<div class="box-descriptionCar">
+								<p *ngIf="veiculo.locacao.desconto" class="box-discount">Desconto<span>{{ veiculo.locacao.desconto * 100 }}%</span></p>
+								<p class="box-agency"><img [src]="veiculo.imgAgencia" alt="Hertz" title="Hertz" class="imgCar" /></p>
+								<img [src]="veiculo.img" alt="Carro 1" title="Carro 1" class="imgCar" />
+								<h3>{{ veiculo.categoria.tipo }}</h3>
+								<p>Código da Taxa: <span>{{ veiculo.codigoTaxa }}</span></p>
+								<p>{{ veiculo.categoria.descricao }}</p>
+								<ul>
+									<li *ngFor="let detalhe of veiculo.detalhes">{{ detalhe }}</li>
+								</ul>
+								<a href="javascript:void(0)" *ngIf="veiculo.maisDetalhes.ativo" (click)="veiculo.maisDetalhes.ativo = false" title="Fechar Detalhes" class="bt-noSee">Fechar Detalhes x</a>
+								<a href="javascript:void(0)" *ngIf="!veiculo.maisDetalhes.ativo" (click)="veiculo.maisDetalhes.ativo = true" title="Ver Detalhes" class="bt-See">Ver Detalhes +</a>
+								<span class="arrow_box active"></span>
+							</div>
+							<div *ngIf="veiculo.maisDetalhes.ativo" class="box-descriptionAll active">{{ veiculo.maisDetalhes.msg }}</div>
+							<div class="box-descriptionList">
+								<ul>
+									<li class="fourDoors">{{veiculo.descricao.qtdPortas}} portas</li>
+									<li class="air">{{veiculo.descricao.qtdPessoas}} pessoas</li>
+									<li class="electric-glass">{{veiculo.descricao.qtdMalas}} malas</li>
+									<li *ngIf="veiculo.descricao.arCondicionado" class="five-people">Ar-condicionado</li>
+									<li class="automatic">{{veiculo.descricao.transmissao}}</li>
+									<li *ngIf="veiculo.descricao.direcaoHidraulica" class="cdusb">Direção hidráulica</li>
+									<li *ngIf="veiculo.descricao.vidroEletrico" class="three-suitcases">Vidro elétrico</li>
+									<li *ngIf="veiculo.descricao.cd" class="hydraulic-steering">CD ou USB</li>
+									<li *ngIf="veiculo.descricao.radio" class="sound">Rádio AM/FM</li>
+								</ul>
+							</div>
+						</div>
+						<div class="productAdd">
+							<h3>Total da Locação</h3>
+							<p *ngIf="veiculo.locacao.desconto" class="txt-oferta">de <span>{{ veiculo.locacao.valor | currency:'BRL' }}</span></p>
+							<p *ngIf="veiculo.locacao.desconto" class="txt-ofertaValor">por <span>{{ desconto(veiculo.locacao.valor, veiculo.locacao.desconto) | currency:'BRL' }}</span></p>
+							<p *ngIf="!veiculo.locacao.desconto" class="txt-ofertaValor"><span>{{ veiculo.locacao.valor | currency:'BRL' }}</span></p>
+							<p *ngIf="veiculo.locacao.qtParcelas" class="txt-btAdd">em até {{ veiculo.locacao.qtParcelas }}x</p>
+							<button type="button" class="btn btn-primary customBt" (click)="alugar(veiculo)">Alugar</button>
+							<p *ngIf="veiculo.locacao.taxaInclusa" class="txt-tax">Taxas inclusas</p>
+							<span class="arrow_right"></span>
+						</div>
+					</div>
+          <!-- Fim Produto -->
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+<footer id="footer"></footer>
+
+<!-- <div *ngFor="let veiculo of veiculos">
+	<img [src]="veiculo.img" />
+	<p>{{ veiculo.categoria.tipo }}</p>
+	<p>{{ veiculo.codigoTaxa }}</p>
+	<p>{{ veiculo.categoria.descricao }}</p>
+	<p *ngFor="let detalhe of veiculo.detalhes">- {{ detalhe }}</p>
+	<span>Ver detalhes</span>
+	<p>{{ veiculo.maisDetalhes }}</p>
+	<p *ngIf="veiculo.locacao.desconto">Desconto: {{ veiculo.locacao.desconto * 100 }}%</p>
+	<p *ngIf="veiculo.locacao.desconto">De: {{ veiculo.locacao.valor | currency:'BRL' }}</p>
+	<p *ngIf="veiculo.locacao.desconto">Por: {{ desconto(veiculo.locacao.valor, veiculo.locacao.desconto) | currency:'BRL' }}</p>
+	<p *ngIf="!veiculo.locacao.desconto">{{ desconto(veiculo.locacao.valor, veiculo.locacao.desconto) | currency:'BRL' }}</p>
+	<p *ngIf="veiculo.locacao.qtParcelas">Em até {{ veiculo.locacao.qtParcelas }}x</p>
+	<p>Taxas inclusas: {{ veiculo.locacao.taxaInclusa?'Sim':'Não' }}</p>
+	<p>{{veiculo.descricao.qtdPortas}} portas</p>
+	<p>{{veiculo.descricao.qtdPessoas}} pessoas</p>
+	<p>{{veiculo.descricao.qtdMalas}} malas</p>
+	<p *ngIf="veiculo.descricao.arCondicionado">Ar-condicionado</p>
+	<p>{{veiculo.descricao.transmissao}}</p>
+	<p *ngIf="veiculo.descricao.direcaoHidraulica">Direção hidráulica</p>
+	<p *ngIf="veiculo.descricao.vidroEletrico">Vidro elétrico</p>
+	<p *ngIf="veiculo.descricao.cd">CD ou USB</p>
+	<p *ngIf="veiculo.descricao.radio">Rádio AM/FM</p>
+</div> -->
